@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   resources :users, only: [:index, :create, :show, :update, :destroy]
 
   post 'login', to: 'sessions#create'
-  post 'validate', to: 'session#validate'
+  get 'validate', to: 'sessions#validate'
   # Defines the root path route ("/")
   # root "posts#index"
 end

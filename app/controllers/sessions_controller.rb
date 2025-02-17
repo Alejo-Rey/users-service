@@ -1,5 +1,4 @@
 class SessionsController < ApplicationController
-  require 'pry';
   skip_before_action :authenticate_user!, only: [ :create ]
 
   def create
@@ -20,7 +19,6 @@ class SessionsController < ApplicationController
     raise unless token
 
     begin
-      decoded = JwtService.decode(token)
       current_user = User.find(decoded[:user_id])
 
       if current_user.present?
