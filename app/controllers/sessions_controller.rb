@@ -23,7 +23,10 @@ class SessionsController < ApplicationController
       current_user = User.find(decoded_token[:user_id])
 
       if current_user.present?
-        render json: { token: token, message: "Authorized" }, status: :ok
+        render json: { token: token,
+                       message: "Authorized",
+                       user: { "id": current_user.id, "email": current_user.email } },
+               status: :ok
       else
         render json: { error: "Invalid token" }, status: :unauthorized
       end
