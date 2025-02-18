@@ -19,15 +19,16 @@ class SessionsController < ApplicationController
     raise unless token
 
     begin
-      current_user = User.find(decoded[:user_id])
+      decoded_token = JwtService.decode(token)
+      current_user = User.find(decoded_token[:user_id])
 
       if current_user.present?
         render json: { token: token, message: "Authorized" }, status: :ok
       else
         render json: { error: "Invalid token" }, status: :unauthorized
       end
-    rescue StandardError
-      render json: { error: "Unauthorized" }, status: :unauthorized
+    rescue StandardError => e
+      render json: { error: "Unauthorized: #{e}" }, status: :unauthorized
     end
   end
 end
