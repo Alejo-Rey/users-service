@@ -37,7 +37,7 @@ gem "thruster", require: false
 
 gem "bcrypt"
 gem "jwt"
-gem "faraday", "~> 2.12", ">= 2.12.2"
+gem "faraday", "~> 2.12"
 
 # https://rubygems.org/gems/bunny/versions/2.23.0
 gem "bunny", "~> 2.23"
